@@ -4,13 +4,14 @@ This document is a compact reference for future agents working on [`race.html`](
 
 ## Purpose
 
-`race.html` is a self-contained browser game inspired by graph-paper vector racing. Two cars alternate turns on a grid. Each move changes velocity by `-1`, `0`, or `+1` on both axes, then advances by the resulting velocity vector.
+`race.html` is a self-contained browser game inspired by graph-paper vector racing. Two to four cars alternate turns on a grid. Each move changes velocity by `-1`, `0`, or `+1` on both axes, then advances by the resulting velocity vector.
 
 ## Structure
 
 - UI, rendering, game rules, track generation, and AI all live in one file.
 - The board is a `<canvas>` drawn from grid coordinates.
-- Sidebar controls configure track type, random generation settings, players, and restart/undo.
+- The sidebar is split into setup/action controls at the top and live game status at the bottom.
+- Sidebar controls configure track type, random generation settings, player count, per-player AI/human mode, and restart/undo.
 - Game state is kept in the global `state` object and prior states are copied into `history` for undo.
 
 ## Core State
@@ -42,6 +43,7 @@ This document is a compact reference for future agents working on [`race.html`](
 - Preset tracks: `oval`, `bottleneck`, `snake`.
 - Random tracks support `open` and `circuit` shapes.
 - Random styles currently include `smooth`, `hairpin`, `clover`, `chicane`, and `polygon`.
+- Tracks are expected to provide at least four valid starting cells so the UI can support up to four players.
 - `withProgress()` computes `distToFinish` for open-track AI heuristics.
 
 ## AI
